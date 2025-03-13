@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,12 @@ public class Player : MonoBehaviour
 
     public bool triggerCalled = false;
 
+    public float moveSpeed;
+
     #region State
     public PlayerStateMachine stateMachine {  get; private set; }
+    public IdleState IdleState { get; private set; }
+    public WalkState WalkState { get; private set; }
     #endregion
 
     #region Component
@@ -21,6 +26,8 @@ public class Player : MonoBehaviour
     private void Awake()//加入新状态
     {
         stateMachine = new PlayerStateMachine();
+        IdleState = new IdleState(this, stateMachine, "Idle");
+        WalkState = new WalkState(this, stateMachine, "Walk");
     }
     private void Start()//获取组件
     {
@@ -60,4 +67,9 @@ public class Player : MonoBehaviour
         FlipController(_xVelociuty);
     }
     #endregion
+    
+    public void AnimationFinished(Player player)
+    {
+        player.triggerCalled = true;
+    }
 }
