@@ -26,7 +26,7 @@ public class WalkState : PlayerState
 
         if(xInput == 0)
         {
-            stateMachine.ChangeState(player.IdleState);
+            stateMachine.ChangeState(player.idleState);
         }
     }
 }

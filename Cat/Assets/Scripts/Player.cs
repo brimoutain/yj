@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,7 +15,7 @@ public class Player : MonoBehaviour
 
     #region State
     public PlayerStateMachine stateMachine {  get; private set; }
-    public IdleState IdleState { get; private set; }
+    public IdleState idleState { get; private set; }
     public WalkState WalkState { get; private set; }
     #endregion
 
@@ -26,13 +27,21 @@ public class Player : MonoBehaviour
     private void Awake()//加入新状态
     {
         stateMachine = new PlayerStateMachine();
-        IdleState = new IdleState(this, stateMachine, "Idle");
+
+
+        idleState = new IdleState(this, stateMachine, "Idle");
         WalkState = new WalkState(this, stateMachine, "Walk");
     }
     private void Start()//获取组件
     {
-        anim = GetComponent<Animator>();
+        stateMachine.Initialized(idleState);
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        stateMachine.currentState.Update();
     }
 
     #region Flip

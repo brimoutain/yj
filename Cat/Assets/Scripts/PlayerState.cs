@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState 
 {
     protected PlayerStateMachine stateMachine;
     protected Player player;
@@ -34,6 +34,7 @@ public class PlayerState : MonoBehaviour
         stateTimer -= Time.deltaTime;
 
         xInput = Input.GetAxisRaw("Horizontal");
+        Debug.Log(xInput);
         yInput = Input.GetAxisRaw("Vertical");
         player.anim.SetFloat("yVelocity", rb.velocity.y);
     }

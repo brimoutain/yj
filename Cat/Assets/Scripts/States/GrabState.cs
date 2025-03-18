@@ -24,6 +24,6 @@ public class GrabState : PlayerState
         base.Update();
         //这里抓完布进入静止，也可以播放其他动画
         if(player.triggerCalled) 
-            stateMachine.ChangeState(player.IdleState);
+            stateMachine.ChangeState(player.idleState);
     }
 }
