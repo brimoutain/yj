@@ -10,7 +10,7 @@ public class Curtain : Object
         if (isInteracted)
         {
             //µÈ´ıÃüÃû¡£¡£¡£
-            anim.SetBool(name, false);
+            //anim.SetBool(name, false);
         }
     }
 }
