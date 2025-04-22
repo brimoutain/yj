@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     #region Component
     public Rigidbody2D rb;
     public Animator anim;
+    public SpriteRenderer sprite;
     #endregion
 
     private void Awake()//加入新状态
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         stateMachine.Initialized(idleState);
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -49,7 +51,9 @@ public class Player : MonoBehaviour
     {
         facingDir = facingDir * -1;
         facingRight = !facingRight;
-        transform.Rotate(0, 180, 0);//旋转函数,transform不需要额外定义，因为他是自带的
+        Vector3 theScale = anim.gameObject.transform.localScale;
+        theScale.x = facingRight ? 1 : -1;
+        anim.gameObject.transform.localScale = theScale;
     }//翻转函数
 
     public virtual void FlipController(float _x)//目前设置x，目的时能在空中时也能转身
