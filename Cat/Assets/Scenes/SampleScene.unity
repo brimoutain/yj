@@ -1462,7 +1462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 598680912}
   - component: {fileID: 598680911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2110,9 +2110,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 6.41, y: 3.64}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3.47
 --- !u!50 &1068348794
 Rigidbody2D:
   serializedVersion: 4
@@ -2154,6 +2154,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerCalled: 0
   moveSpeed: 5
+  jumpforce: 0
+  isGroundDetected: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheck: {fileID: 1655386250}
   rb: {fileID: 1068348794}
   anim: {fileID: 1661351707}
   sprite: {fileID: 0}
@@ -2223,6 +2229,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1661351708}
+  - {fileID: 1655386250}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1131172344 stripped
@@ -3031,6 +3038,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.73, y: 0.23}
   m_EdgeRadius: 0
+--- !u!1 &1655386249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655386250}
+  m_Layer: 0
+  m_Name: gound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1655386250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655386249}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.37, y: 1.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1068348797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661351706
 GameObject:
   m_ObjectHideFlags: 0

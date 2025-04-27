@@ -2,10 +2,12 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     public int facingDir { get; private set; } = 1;
     protected bool facingRight = true;
 
@@ -13,10 +15,18 @@ public class Player : MonoBehaviour
 
     public float moveSpeed;
 
+    public float jumpforce;
+
+    public bool isGroundDetected;
+    public LayerMask whatIsGround;
+    public Transform groundCheck;
+
     #region State
     public PlayerStateMachine stateMachine {  get; private set; }
     public IdleState idleState { get; private set; }
-    public WalkState WalkState { get; private set; }
+    public WalkState walkState { get; private set; }
+    public JumpState JumpState { get; private set; }
+    public GrabState grabState { get; private set; }
     #endregion
 
     #region Component
@@ -31,7 +41,11 @@ public class Player : MonoBehaviour
 
 
         idleState = new IdleState(this, stateMachine, "Idle");
-        WalkState = new WalkState(this, stateMachine, "Walk");
+        walkState = new WalkState(this, stateMachine, "Walk");
+        JumpState = new JumpState(this, stateMachine, "Jump");
+        grabState = new GrabState(this, stateMachine, "Grab");
+
+        instance = this;
     }
     private void Start()//获取组件
     {
@@ -44,6 +58,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.currentState.Update();
+        isGroundDetected = Physics2D.Raycast(groundCheck.position, Vector3.down, 1f,whatIsGround);
     }
 
     #region Flip
@@ -80,7 +95,6 @@ public class Player : MonoBehaviour
         FlipController(_xVelociuty);
     }
     #endregion
-    
     public void AnimationFinished(Player player)
     {
         player.triggerCalled = true;

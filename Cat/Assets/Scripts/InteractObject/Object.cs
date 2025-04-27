@@ -34,10 +34,13 @@ public class Object : MonoBehaviour
             {
                 //玩家按下k键，可以控制播放动画等操作，这里变为破坏物体
                 isInteracted = true;
-                Debug.Log("TriggerCall");
-                //可以添加一个动画结束检测
+                Player.instance.stateMachine.ChangeState(Player.instance.grabState);
+            }
+            if (Player.instance.triggerCalled)
+            {
                 brokenObj.SetActive(true);
                 Destroy(gameObject);
+                Player.instance.triggerCalled = false;
             }
         }
     }

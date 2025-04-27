@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkState : PlayerState
+public class WalkState : GroundedState
 {
     private float speedMultiplier = 1f; // 默认速度倍率
     private float sprintMultiplier = 1.5f; // 加速倍率
@@ -37,10 +37,5 @@ public class WalkState : PlayerState
         }
 
         player.SetVelocity(xInput * player.moveSpeed * speedMultiplier, rb.velocity.y);
-
-        if (xInput == 0)
-        {
-            stateMachine.ChangeState(player.idleState);
-        }
     }
 }
