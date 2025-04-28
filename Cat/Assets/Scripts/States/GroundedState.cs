@@ -29,5 +29,9 @@ public class GroundedState : PlayerState
         {
             stateMachine.ChangeState(player.idleState);
         }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            stateMachine.ChangeState(player.JumpState);
+        }
     }
 }

@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public float moveSpeed;
 
     public float jumpforce;
+    public LayerMask playerLayer;
 
     public bool isGroundDetected;
     public LayerMask whatIsGround;
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.currentState.Update();
+        Debug.Log(stateMachine.currentState);
         isGroundDetected = Physics2D.Raycast(groundCheck.position, Vector3.down, 1f,whatIsGround);
     }
 
