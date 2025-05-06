@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerState 
@@ -35,6 +36,7 @@ public class PlayerState
 
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
+
         player.anim.SetFloat("yVelocity", rb.velocity.y);
     }
 

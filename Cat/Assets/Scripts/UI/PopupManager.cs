@@ -18,11 +18,13 @@ public class PopupManager : MonoBehaviour
     {
         popupPanel.SetActive(true);
         background.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void HidePopup()
     {
         popupPanel.SetActive(false);
         background.SetActive(false);
+        Time.timeScale = 1;
     }
 }
