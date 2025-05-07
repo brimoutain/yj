@@ -102,6 +102,5 @@ public class Player : MonoBehaviour
     public void AnimationFinished(Player player)
     {
         player.triggerCalled = true;
-
     }
 }

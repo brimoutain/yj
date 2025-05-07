@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Slider : MonoBehaviour
 {
-    public Transform slider;
+    public RectTransform slider;
 
     private void Start()
     {
-        slider = GetComponent<Transform>();
+        slider = GetComponent<RectTransform>();
     }
 
     void Update()
     {
-        slider.localScale = new Vector3(ObjManager.instance.brokenNum/100,1,1);
+        float newWidth = 128.7f * ObjManager.instance.brokenNum * 0.01f;
+        slider.sizeDelta = new Vector2(newWidth, slider.sizeDelta.y);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GrabState : PlayerState
@@ -23,7 +24,7 @@ public class GrabState : PlayerState
     {
         base.Update();
         //这里抓完布进入静止，也可以播放其他动画
-        if(player.triggerCalled) 
-            stateMachine.ChangeState(player.idleState);
+        //if (player.triggerCalled)
+            //stateMachine.ChangeState(player.idleState);
     }
 }

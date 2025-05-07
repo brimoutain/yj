@@ -27,7 +27,7 @@ public class PlayerState
     {
         player.anim.SetBool(animBoolName, true);
         rb = player.rb;
-        player.triggerCalled = false;
+        //player.triggerCalled = false;
     }
 
     public virtual void Update()

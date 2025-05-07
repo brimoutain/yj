@@ -50,28 +50,36 @@ public class ObjectForBedroom : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Player.instance.triggerCalled && isInteracted == true)
+        {
+            //玩家动画结束
+            enterObj.SetActive(false);//关闭白边
+            brokenObj.SetActive(true);//打开破坏
+            Player.instance.stateMachine.ChangeState(Player.instance.idleState);
+            ObjManager.instance.brokenNum += (int)addNum;
+            Player.instance.triggerCalled = false;
+            this.gameObject.SetActive(false);//
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         // 检查进入触发器的物体是否是特定类型
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && isInteracted == false)
         {
             //玩家进入检测范围，且没有被破坏过时变成白边
+
             enterObj.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.K) && isInteracted == false)
+            if (Input.GetKeyDown(KeyCode.K) )
             {
                 //玩家按下k键，可以控制播放动画等操作，这里变为破坏物体
                 isInteracted = true;
                 //准备播放动画
                 Player.instance.stateMachine.ChangeState(playerState);
             }
-            if (Player.instance.triggerCalled && isInteracted == true)
-            {
-                //玩家动画结束
-                enterObj.SetActive(false);
-                brokenObj.SetActive(true);
-                Player.instance.triggerCalled = false;
-                ObjManager.instance.brokenNum += (int)addNum;
-            }
+            
         }
     }
 
