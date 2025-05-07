@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Object : MonoBehaviour
 {
@@ -11,44 +12,79 @@ public class Object : MonoBehaviour
     protected SpriteRenderer sprite;
     protected bool isInteracted = false;
 
-    public Sprite originObj;
+    private Sprite originObj;
     public Sprite enterObj;
-    public GameObject brokenObj;
-    void Start()
+    public Sprite brokenObj;
+
+    protected PlayerState playerState;
+
+
+    // 1. 定义一个枚举类型作为选项
+    public enum StateType
+    {
+        grab,
+        push,
+        doumaobang,
+        slide
+    }
+
+    public enum AddNum
+    {
+        Three = 3,
+        Six = 6,
+        Ten = 10,
+        Twelve = 12
+    }
+    // 2. 在 Inspector 中显示为下拉菜单
+    [SerializeField]
+    private StateType selectedState;
+    [SerializeField]
+    private AddNum addNum;
+
+    protected virtual void Start()
     {
         //anim = GetComponentInChildren<Animator>();
         col = GetComponent<Collider2D>();
         sprite = GetComponent<SpriteRenderer>();
-        col.isTrigger = true;
         originObj = sprite.sprite;
+
+        switch (selectedState)
+        {
+            case StateType.grab:
+                playerState = Player.instance.grabState;
+                break;
+            case StateType.push:
+                playerState = Player.instance.pushState;
+                break;
+            default:
+                break;
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerStay2D(Collider2D collision)
     {
         // 检查进入触发器的物体是否是特定类型
-        if (collision.CompareTag("Player") && isInteracted == false)
+        if (collision.CompareTag("Player") )
         {
             //玩家进入检测范围，且没有被破坏过时变成白边
             sprite.sprite = enterObj;
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K) && isInteracted == false)
             {
                 //玩家按下k键，可以控制播放动画等操作，这里变为破坏物体
                 isInteracted = true;
                 //准备播放动画
-                Player.instance.stateMachine.ChangeState(Player.instance.grabState);
+                Player.instance.stateMachine.ChangeState(playerState);
             }
-            if (Player.instance.triggerCalled)
+            if (Player.instance.triggerCalled && isInteracted == true)
             {
                 //玩家动画结束
-                brokenObj.SetActive(true);
-                Destroy(gameObject);
-                Player.instance.triggerCalled = false;
-                ObjManager.instance.brokenNum++;
+                sprite.sprite = brokenObj;
+                ObjManager.instance.brokenNum += (int)addNum;
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (!isInteracted)
         {

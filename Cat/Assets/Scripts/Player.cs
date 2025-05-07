@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public WalkState walkState { get; private set; }
     public JumpState JumpState { get; private set; }
     public GrabState grabState { get; private set; }
+    public PushState pushState { get; private set; }
     #endregion
 
     #region Component
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         walkState = new WalkState(this, stateMachine, "Walk");
         JumpState = new JumpState(this, stateMachine, "Jump");
         grabState = new GrabState(this, stateMachine, "Grab");
+        pushState = new PushState(this, stateMachine, "Push");
 
         instance = this;
     }
@@ -100,5 +102,6 @@ public class Player : MonoBehaviour
     public void AnimationFinished(Player player)
     {
         player.triggerCalled = true;
+
     }
 }

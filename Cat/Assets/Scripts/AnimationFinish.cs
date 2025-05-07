@@ -6,13 +6,11 @@ public class AnimationFinish : MonoBehaviour
 {
     public delegate void AnimationFinishDelegate(Player player);
 
-    [SerializeField] private Player player;
-
     public event AnimationFinishDelegate animationFinish;
 
-    public void TriggerCalled(Player player)
+    public void TriggerCalled()
     {
-        this.animationFinish += player.AnimationFinished;
-        animationFinish.Invoke(player);
+        this.animationFinish += Player.instance.AnimationFinished;
+        animationFinish.Invoke(Player.instance);
     }
 }
