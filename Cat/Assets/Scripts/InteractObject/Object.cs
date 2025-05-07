@@ -56,7 +56,7 @@ public class Object : MonoBehaviour
                 playerState = Player.instance.pushState;
                 break;
             default:
-                break;
+                return;
         }
     }
 
