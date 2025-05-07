@@ -53,6 +53,10 @@ public class RoomTimerManager : MonoBehaviour
         {
             RemoveBarrier2();
         }
+        else
+        {
+            ShowCG();
+        }
     }
 
     public void RemoveBarrier1()
@@ -66,5 +70,11 @@ public class RoomTimerManager : MonoBehaviour
     public void RemoveBarrier2()
     {
         SecondroomBarrier.SetActive(false);   // 移除出口障碍
+        DialogManager.instance.ShowDialog1();     // 显示对话框
+    }
+
+    public void ShowCG()
+    {
+
     }
 }
