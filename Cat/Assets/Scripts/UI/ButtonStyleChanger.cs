@@ -29,6 +29,11 @@ public class ButtonStyleChanger : MonoBehaviour
         }
     }
 
+    private void OnMouseUp()
+    {
+        ResetStyle();
+    }
+
     public void ResetStyle()
     {
         if (normalSprite != null && img != null)

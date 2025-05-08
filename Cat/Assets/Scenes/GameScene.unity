@@ -4572,6 +4572,7 @@ GameObject:
   - component: {fileID: 1074030908}
   - component: {fileID: 1074030907}
   - component: {fileID: 1074030906}
+  - component: {fileID: 1074030909}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -4643,9 +4644,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2025939969}
-        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: TogglePause
+      - m_Target: {fileID: 1074030909}
+        m_TargetAssemblyTypeName: NoteButton, Assembly-CSharp
+        m_MethodName: OpenAchievements
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4693,6 +4694,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074030904}
   m_CullTransparentMesh: 1
+--- !u!114 &1074030909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074030904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c40e4ac423b414cb6a28d5cb05ecbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageGroup: {fileID: 0}
+  tabGroup: {fileID: 0}
 --- !u!1 &1085483257
 GameObject:
   m_ObjectHideFlags: 0
@@ -5367,7 +5382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1206406118
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8808,6 +8823,7 @@ GameObject:
   - component: {fileID: 1829857338}
   - component: {fileID: 1829857340}
   - component: {fileID: 1829857339}
+  - component: {fileID: 1829857341}
   m_Layer: 5
   m_Name: Hints
   m_TagString: Untagged
@@ -8864,6 +8880,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1829857341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829857337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c40e4ac423b414cb6a28d5cb05ecbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageGroup: {fileID: 0}
+  tabGroup: {fileID: 0}
 --- !u!1 &1843343346
 GameObject:
   m_ObjectHideFlags: 0
