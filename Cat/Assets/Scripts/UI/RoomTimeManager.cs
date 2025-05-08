@@ -91,6 +91,11 @@ public class RoomTimerManager : MonoBehaviour
     {
         ThirdroomBarrier.SetActive(false);
         DialogManager.instance.ShowDialog1();
+        //进入阳台时若没破坏任何东西
+        if (ObjManager.instance.brokenNum == 0)
+        {
+            PageManager.TriggerCollectionEvent(1);
+        }
         loadScene = RoomExitManager3.instance.sceneToLoad;
     }
 
@@ -110,7 +115,7 @@ public class RoomTimerManager : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
+        PageManager.TriggerCollectionEvent(3);
         Debug.Log("玩家未离开房间，跳转场景！");
         SceneManager.LoadScene(loadScene); 
     }

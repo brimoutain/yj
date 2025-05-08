@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     public JumpState JumpState { get; private set; }
     public GrabState grabState { get; private set; }
     public PushState pushState { get; private set; }
+    public DoumaoState playState { get; private set; }
+    public YaodianxianState bitState { get; private set; }
+    public SlideState slideState { get; private set; }
     #endregion
 
     #region Component
@@ -47,6 +50,9 @@ public class Player : MonoBehaviour
         JumpState = new JumpState(this, stateMachine, "Jump");
         grabState = new GrabState(this, stateMachine, "Grab");
         pushState = new PushState(this, stateMachine, "Push");
+        playState = new DoumaoState(this, stateMachine, "Play");
+        bitState  = new YaodianxianState(this, stateMachine, "Bit");
+        slideState = new SlideState(this, stateMachine, "Slide");
 
         instance = this;
     }

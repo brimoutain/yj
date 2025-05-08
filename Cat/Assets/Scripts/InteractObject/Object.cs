@@ -17,6 +17,8 @@ public class Object : MonoBehaviour
     public Sprite brokenObj;
 
     protected PlayerState playerState;
+    public bool canInteractedMore = false;
+    public static int interactedNum;
 
 
     // 1. 定义一个枚举类型作为选项
@@ -46,6 +48,7 @@ public class Object : MonoBehaviour
         //anim = GetComponentInChildren<Animator>();
         col = GetComponent<Collider2D>();
         sprite = GetComponent<SpriteRenderer>();
+        interactedNum = 0;
 
         switch (selectedState)
         {
@@ -54,6 +57,13 @@ public class Object : MonoBehaviour
                 break;
             case StateType.push:
                 playerState = Player.instance.pushState;
+                break;
+            case StateType.doumaobang:
+                //
+                break;
+            case StateType.slide:
+                //
+                canInteractedMore = true;
                 break;
             default:
                 return;
@@ -64,12 +74,13 @@ public class Object : MonoBehaviour
     {
         if (Player.instance.triggerCalled && isInteracted == true)
         {
-            Debug.Log("End");
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
             //玩家动画结束
             sprite.sprite = brokenObj;
-            ObjManager.instance.brokenNum += (int)addNum;
+            ObjManager.instance.CheckNum((int)addNum);
             Player.instance.triggerCalled = false;
+            //其他动画到不了八
+            interactedNum++;
         }
     }
 
@@ -82,9 +93,7 @@ public class Object : MonoBehaviour
             sprite.sprite = enterObj;
             if (Input.GetKeyDown(KeyCode.K) )
             {
-                //玩家按下k键，可以控制播放动画等操作，这里变为破坏物体
                 isInteracted = true;
-                //准备播放动画
                 Player.instance.stateMachine.ChangeState(playerState);
             }
             
@@ -97,6 +106,10 @@ public class Object : MonoBehaviour
         {
             //如果离开时也没有按下k键，则变回原样
             sprite.sprite = originObj;
+        }
+        if(interactedNum == 8)
+        {
+            PageManager.TriggerCollectionEvent(5);
         }
     }
 }
