@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
     {
         stateMachine.currentState.Update();
         Debug.Log(stateMachine.currentState);
+        Debug.Log(triggerCalled);
         isGroundDetected = Physics2D.Raycast(groundCheck.position, Vector3.down, 1f,whatIsGround);
     }
 

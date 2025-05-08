@@ -5540,7 +5540,7 @@ MonoBehaviour:
   enterObj: {fileID: -6260963776297401023, guid: 8041078f9b895654f85720ae88997446, type: 3}
   brokenObj: {fileID: 1234831488469573829, guid: 8041078f9b895654f85720ae88997446, type: 3}
   canInteractedMore: 0
-  selectedState: 0
+  selectedState: 2
   addNum: 6
 --- !u!70 &1209923571
 CapsuleCollider2D:
@@ -7042,7 +7042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterObj: {fileID: 1555576364}
   brokenObj: {fileID: 1136068148}
-  selectedState: 2
+  selectedState: 0
   addNum: 12
 --- !u!212 &1442949805
 SpriteRenderer:
@@ -7917,7 +7917,7 @@ Transform:
   m_GameObject: {fileID: 1661351706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.6, y: 3.4, z: 0}
+  m_LocalPosition: {x: -18.9, y: 3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

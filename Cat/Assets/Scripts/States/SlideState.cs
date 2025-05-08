@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SlideState : PlayerState
 {
@@ -13,6 +14,7 @@ public class SlideState : PlayerState
         base.Enter();
         player.SetZeroVelocity();
         player.transform.position = GameObject.Find("SlidePoint").transform.position;
+        player.transform.DOMove(new Vector3(16, 0, 0) + player.transform.position, 0.35f);
     }
 
     public override void Exit()

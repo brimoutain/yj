@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneFader : MonoBehaviour
 {
     public Image fadeImage;
-    public float fadeDuration = 1f;
+    public float fadeDuration = .1f;
 
     void Start()
     {

@@ -42,6 +42,7 @@ public class Object : MonoBehaviour
     private StateType selectedState;
     [SerializeField]
     private AddNum addNum;
+    private bool isPlayerInTrigger;
 
     protected virtual void Start()
     {
@@ -49,6 +50,7 @@ public class Object : MonoBehaviour
         col = GetComponent<Collider2D>();
         sprite = GetComponent<SpriteRenderer>();
         interactedNum = 0;
+        isInteracted =false;
 
         switch (selectedState)
         {
@@ -59,10 +61,10 @@ public class Object : MonoBehaviour
                 playerState = Player.instance.pushState;
                 break;
             case StateType.doumaobang:
-                //
+                playerState = Player.instance.playState;
                 break;
             case StateType.slide:
-                //
+                playerState= Player.instance.slideState;
                 canInteractedMore = true;
                 break;
             default:
@@ -81,22 +83,36 @@ public class Object : MonoBehaviour
             Player.instance.triggerCalled = false;
             //其他动画到不了八
             interactedNum++;
+            if (canInteractedMore)
+                isInteracted = false;
+        }
+
+        if(isPlayerInTrigger && Input.GetKeyDown(KeyCode.K))
+        {
+            isInteracted = true;
+            Player.instance.stateMachine.ChangeState(playerState);
         }
     }
 
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
-        // 检查进入触发器的物体是否是特定类型
-        if (collision.CompareTag("Player") && isInteracted == false)
-        {
-            //玩家进入检测范围，且没有被破坏过时变成白边
-            sprite.sprite = enterObj;
-            if (Input.GetKeyDown(KeyCode.K) )
-            {
-                isInteracted = true;
-                Player.instance.stateMachine.ChangeState(playerState);
-            }
+        //// 检查进入触发器的物体是否是特定类型
+        //if (collision.CompareTag("Player") && isInteracted == false)
+        //{
+        //    //玩家进入检测范围，且没有被破坏过时变成白边
+        //    sprite.sprite = enterObj;
+        //    if (Input.GetKeyDown(KeyCode.K) )
+        //    {
+        //        isInteracted = true;
+        //        Player.instance.stateMachine.ChangeState(playerState);
+        //    }
             
+        //}
+
+        if (collision.CompareTag("Player") && !isInteracted)
+        {
+            sprite.sprite = enterObj;
+            isPlayerInTrigger = true; // 标记玩家在触发区域
         }
     }
 
@@ -111,5 +127,6 @@ public class Object : MonoBehaviour
         {
             PageManager.TriggerCollectionEvent(5);
         }
+        isPlayerInTrigger = false;
     }
 }

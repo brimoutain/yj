@@ -29,7 +29,7 @@ public class ObjManager : MonoBehaviour
             {
                 //ÆÆ»µÍõ
                 PageManager.TriggerCollectionEvent(0);
-
+                PageManager.TriggerCollectionEvent(2);
             }
         }
     }
