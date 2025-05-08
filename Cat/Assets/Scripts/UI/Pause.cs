@@ -6,34 +6,93 @@ public class Pause : MonoBehaviour
 {
     public static Pause instance;
 
-    public GameObject pauseMenu;
-    public bool isPaused;
+    [Header("UI ¿ØÖÆ")]
+    public GameObject pauseMenu;       // ÔÝÍ£²Ëµ¥ UI
+    public GameObject dimBackground;   // ºÚÉ«°ëÍ¸Ã÷±³¾°
+
+    [HideInInspector]
+    public bool isPaused { get; private set; }
 
     private void Awake()
     {
-        instance = this;
+        // µ¥Àý¸³Öµ
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
     private void Start()
     {
-        pauseMenu.SetActive(false);
+        if (pauseMenu != null)
+            pauseMenu.SetActive(false);
+        if (dimBackground != null)
+            dimBackground.SetActive(false);
+
         isPaused = false;
     }
-    public void PauseGame()
+
+    private void Update()
     {
-        if (!PopupManager.instance.isPopupVisible)
+        // ESC ¼üÇÐ»»ÔÝÍ£
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenu.SetActive(true);
-            isPaused = true;
-            Time.timeScale = 0;
+            TogglePause();
         }
     }
-    public void UnpauseGame()
+
+    /// <summary>
+    /// ÇÐ»»ÔÝÍ£×´Ì¬
+    /// </summary>
+    public void TogglePause()
     {
-        if (!PopupManager.instance.isPopupVisible)
+        if (isPaused)
         {
-            pauseMenu.SetActive(false);
-            isPaused = false;
-            Time.timeScale = 1;
+            ResumeGame();
         }
+        else
+        {
+            // Èô±Ê¼Ç±¾ÕýÔÚ´ò¿ª£¬Ôò²»ÔÊÐíÔÝÍ£
+            if (PageManager.instance != null && PageManager.instance.notebookWindow.activeSelf)
+                return;
+
+            PauseGame();
+        }
+    }
+
+    /// <summary>
+    /// ÔÝÍ£ÓÎÏ·
+    /// </summary>
+    public void PauseGame()
+    {
+        if (isPaused) return;
+
+        isPaused = true;
+        Time.timeScale = 0f;
+
+        if (pauseMenu != null)
+            pauseMenu.SetActive(true);
+        if (dimBackground != null)
+            dimBackground.SetActive(true);
+    }
+
+    /// <summary>
+    /// È¡ÏûÔÝÍ£
+    /// </summary>
+    public void ResumeGame()
+    {
+        if (!isPaused) return;
+
+        isPaused = false;
+        Time.timeScale = 1f;
+
+        if (pauseMenu != null)
+            pauseMenu.SetActive(false);
+        if (dimBackground != null)
+            dimBackground.SetActive(false);
     }
 }

@@ -1,19 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RoomTimerManager : MonoBehaviour
 {
     public static RoomTimerManager instance;
 
     public TMP_Text timerText;
-    public GameObject dialogBox;        // 对话框 UI
-    public GameObject FirstroomBarrier;        // 房间1出口阻挡器
-    public GameObject SecondroomBarrier;        // 房间2出口阻挡器
-    public float countdownTime = 60f;   // 倒计时秒数
-    public int currentRoom = 1;        // 当前房间
+    public GameObject dialogBox;
+    public GameObject FirstroomBarrier;
+    public GameObject SecondroomBarrier;
+    public GameObject ThirdroomBarrier;
+    public float countdownTime = 60f;
+    public int currentRoom = 1;
+    public string loadScene;
+
+    private bool hasExitedRoom = false;
 
     private void Awake()
     {
@@ -53,28 +56,62 @@ public class RoomTimerManager : MonoBehaviour
         {
             RemoveBarrier2();
         }
-        else
+        else if (currentRoom == 3)
         {
-            ShowCG();
+            RemoveBarrier3();
         }
+    }
+
+    public void SetRoomExited()
+    {
+        hasExitedRoom = true;
+        Debug.Log("玩家已离开房间！");
     }
 
     public void RemoveBarrier1()
     {
-        FirstroomBarrier.SetActive(false);   // 移除出口障碍
-        SecondroomBarrier.SetActive(true);   // 显示房间2出口障碍
-        DialogManager.instance.ShowDialog1();     // 显示对话框
-        currentRoom ++;        // 切换房间
+        FirstroomBarrier.SetActive(false);
+        SecondroomBarrier.SetActive(true);
+        DialogManager.instance.ShowDialog1();
+        currentRoom++;
+        StartCoroutine(CheckRoomExitAfterTimeout());
+        loadScene = RoomExitManager1.instance.sceneToLoad;
     }
 
     public void RemoveBarrier2()
     {
-        SecondroomBarrier.SetActive(false);   // 移除出口障碍
-        DialogManager.instance.ShowDialog1();     // 显示对话框
+        SecondroomBarrier.SetActive(false);
+        DialogManager.instance.ShowDialog1();
+        currentRoom++;
+        StartCoroutine(CheckRoomExitAfterTimeout());
+        loadScene = RoomExitManager2.instance.sceneToLoad;
     }
 
-    public void ShowCG()
+    public void RemoveBarrier3()
     {
+        ThirdroomBarrier.SetActive(false);
+        DialogManager.instance.ShowDialog1();
+        loadScene = RoomExitManager3.instance.sceneToLoad;
+    }
 
+    private IEnumerator CheckRoomExitAfterTimeout()
+    {
+        float waitTime = 5f;
+        float timer = 0f;
+
+        while (timer < waitTime)
+        {
+            if (hasExitedRoom)
+            {
+                Debug.Log("玩家已离开房间，取消跳转。");
+                yield break;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("玩家未离开房间，跳转场景！");
+        SceneManager.LoadScene(loadScene); 
     }
 }
