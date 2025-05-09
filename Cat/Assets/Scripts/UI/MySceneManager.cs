@@ -8,12 +8,10 @@ public class MySceneManager : MonoBehaviour
     public SceneFader fader;
     public GameObject pageGroup;
     public GameObject tabGroup;
-    public GameObject Note;
 
     public void StartGame()
     {
         fader.FadeToScene("GameScene");
-        DontDestroyOnLoad(Note);
     }
 
     public void OpenAchievements()

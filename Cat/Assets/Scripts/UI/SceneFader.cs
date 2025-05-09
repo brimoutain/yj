@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneFader : MonoBehaviour
 {
     public Image fadeImage;
+    public GameObject save;
     public float fadeDuration = .1f;
 
     void Start()
@@ -39,7 +40,7 @@ public class SceneFader : MonoBehaviour
             SetAlpha(t / fadeDuration);
             yield return null;
         }
-
+        DontDestroyOnLoad(save);
         SceneManager.LoadScene(sceneName); 
     }
 
@@ -52,4 +53,5 @@ public class SceneFader : MonoBehaviour
             fadeImage.color = c;
         }
     }
+
 }

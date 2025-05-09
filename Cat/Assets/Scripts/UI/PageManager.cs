@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PageManager : MonoBehaviour
@@ -25,16 +26,19 @@ public class PageManager : MonoBehaviour
 
     void Start()
     {
-        instance = this;
+        gotcollections = CollectionsSave.instance.gotcollections;
         gotcollections = new bool[8];
-        if (pageGroup != null)
-            pageGroup.SetActive(false);
-        if (dimBackground != null)
-            dimBackground.SetActive(false);
-        // 标签页按钮绑定
+        if (pageGroup != null) pageGroup.SetActive(false);
+        if (dimBackground != null) dimBackground.SetActive(false);
 
+        // 绑定按钮事件
         for (int i = 0; i < tabButtons.Length; i++)
         {
+            if (tabButtons[i] == null)
+            {
+                Debug.LogError($"tabButtons[{i}] 未赋值！");
+                continue;
+            }
             int index = i;
             tabButtons[i].onClick.AddListener(() => ShowPage(index));
         }
@@ -103,6 +107,7 @@ public class PageManager : MonoBehaviour
         {
             collections[index].SetActive(true);
             gotcollections[index] = true;
+            CollectionsSave.instance.gotcollections[index] = true;
         }
     }
 
