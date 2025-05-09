@@ -13,7 +13,7 @@ public class RoomExitManager1 : MonoBehaviour
         instance = this;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (hasExited) return;
 

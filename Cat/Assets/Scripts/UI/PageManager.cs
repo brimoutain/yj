@@ -19,15 +19,13 @@ public class PageManager : MonoBehaviour
     public Button noteButton; // ← 新增：控制Notebook弹出的按钮
 
     public GameObject[] collections;
-    private bool[] gotcollections;
+    public bool[] gotcollections;
 
     private int currentPageIndex = 0;
     private bool wasTimePaused = false;
 
     void Start()
     {
-        gotcollections = CollectionsSave.instance.gotcollections;
-        gotcollections = new bool[8];
         if (pageGroup != null) pageGroup.SetActive(false);
         if (dimBackground != null) dimBackground.SetActive(false);
 
@@ -107,7 +105,6 @@ public class PageManager : MonoBehaviour
         {
             collections[index].SetActive(true);
             gotcollections[index] = true;
-            CollectionsSave.instance.gotcollections[index] = true;
         }
     }
 

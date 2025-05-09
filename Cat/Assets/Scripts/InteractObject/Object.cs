@@ -74,7 +74,7 @@ public class Object : MonoBehaviour
 
     private void Update()
     {
-        if (Player.instance.triggerCalled && isInteracted == true)
+        if (Player.instance.triggerCalled=true && isInteracted == true)
         {
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
             //Íæ¼Ò¶¯»­½áÊø

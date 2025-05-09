@@ -70,6 +70,7 @@ public class RoomTimerManager : MonoBehaviour
 
     public void RemoveBarrier1()
     {
+        hasExitedRoom = false;
         FirstroomBarrier.SetActive(false);
         SecondroomBarrier.SetActive(true);
         DialogManager.instance.ShowDialog1();
@@ -80,6 +81,7 @@ public class RoomTimerManager : MonoBehaviour
 
     public void RemoveBarrier2()
     {
+        hasExitedRoom = false;
         SecondroomBarrier.SetActive(false);
         DialogManager.instance.ShowDialog1();
         currentRoom++;
@@ -89,6 +91,7 @@ public class RoomTimerManager : MonoBehaviour
 
     public void RemoveBarrier3()
     {
+        hasExitedRoom = false;
         ThirdroomBarrier.SetActive(false);
         DialogManager.instance.ShowDialog1();
         //进入阳台时若没破坏任何东西
