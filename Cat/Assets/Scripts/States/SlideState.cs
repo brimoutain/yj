@@ -14,7 +14,9 @@ public class SlideState : PlayerState
         base.Enter();
         player.SetZeroVelocity();
         player.transform.position = GameObject.Find("SlidePoint").transform.position;
-        player.transform.DOMove(new Vector3(16, 0, 0) + player.transform.position, 0.35f);
+        player.transform.DOMove(new Vector3(10, 0, 0) + player.transform.position, 0.35f);
+        if(!player.facingRight)
+            player.Flip();
     }
 
     public override void Exit()

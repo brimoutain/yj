@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     public int facingDir { get; private set; } = 1;
-    protected bool facingRight = true;
+    public bool facingRight = true;
 
     public bool triggerCalled = false;
 

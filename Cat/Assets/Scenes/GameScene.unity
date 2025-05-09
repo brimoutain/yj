@@ -1511,11 +1511,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2449744057075524803}
+  m_Father: {fileID: 1187950274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 224.89804, y: 221.5008}
+  m_AnchoredPosition: {x: 0.000091552734, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 20.0238}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &343264776
@@ -3123,6 +3123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brokenNum: 0
+  slider: {fileID: 343264778}
 --- !u!61 &598680917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3553,6 +3554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 694821681}
   - component: {fileID: 694821680}
+  - component: {fileID: 694821682}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -3590,9 +3592,9 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 11.61, y: 9.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3603,7 +3605,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 60, y: 1}
+  m_Size: {x: 2.79, y: 0.29}
   m_EdgeRadius: 0
 --- !u!4 &694821681
 Transform:
@@ -3620,6 +3622,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &694821682
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694821679}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &778351534
 GameObject:
   m_ObjectHideFlags: 0
@@ -5738,7 +5759,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 343264775}
   m_Father: {fileID: 2449744057075524803}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10724,7 +10746,6 @@ RectTransform:
   - {fileID: 1868057386}
   - {fileID: 670087245}
   - {fileID: 1535278741}
-  - {fileID: 343264775}
   - {fileID: 1187950274}
   - {fileID: 1371009339}
   - {fileID: 1074030905}

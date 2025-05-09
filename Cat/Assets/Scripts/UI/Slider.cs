@@ -11,9 +11,9 @@ public class Slider : MonoBehaviour
         slider = GetComponent<RectTransform>();
     }
 
-    void Update()
+    public void AddNum()
     {
         float newWidth = 128.7f * ObjManager.instance.brokenNum * 0.01f;
-        slider.sizeDelta = new Vector2(newWidth, slider.sizeDelta.y);
+        slider.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
     }
 }

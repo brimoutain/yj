@@ -4,7 +4,7 @@ public class ObjManager : MonoBehaviour
 {
     public static ObjManager instance; // 静态单例
     public int brokenNum = 0;
-
+    public Slider slider;
     private void Awake()
     {
         // 防止重复创建单例
@@ -17,9 +17,9 @@ public class ObjManager : MonoBehaviour
         instance = this; // 在 Awake 中初始化
     }
 
-    public void CheckNum(int num)
+    public void CheckNum()
     {
-        brokenNum += num;
+        slider.AddNum();
         if(brokenNum >= 30)
         {
             PageManager.TriggerCollectionEvent(6);

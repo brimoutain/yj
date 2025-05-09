@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.U2D;
 using static Object;
 
 public class ObjectForBedroom : MonoBehaviour
@@ -32,6 +33,8 @@ public class ObjectForBedroom : MonoBehaviour
     private StateType selectedState;
     [SerializeField]
     private AddNum addNum;
+    private bool isPlayerInTrigger;
+
     void Start()
     {
         //anim = GetComponentInChildren<Animator>();
@@ -52,34 +55,31 @@ public class ObjectForBedroom : MonoBehaviour
 
     private void Update()
     {
-        if (Player.instance.triggerCalled && isInteracted == true)
+        if (Player.instance.triggerCalled && isInteracted)
         {
             //玩家动画结束
             enterObj.SetActive(false);//关闭白边
             brokenObj.SetActive(true);//打开破坏
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
             ObjManager.instance.brokenNum += (int)addNum;
+            ObjManager.instance.CheckNum();
             Player.instance.triggerCalled = false;
-            this.gameObject.SetActive(false);//
+            gameObject.SetActive(false);//
+        }
+
+        if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.K))
+        {
+            isInteracted = true;
+            Player.instance.stateMachine.ChangeState(playerState);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // 检查进入触发器的物体是否是特定类型
-        if (collision.CompareTag("Player") && isInteracted == false)
+        if (collision.CompareTag("Player") && !isInteracted)
         {
-            //玩家进入检测范围，且没有被破坏过时变成白边
-
             enterObj.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.K) )
-            {
-                //玩家按下k键，可以控制播放动画等操作，这里变为破坏物体
-                isInteracted = true;
-                //准备播放动画
-                Player.instance.stateMachine.ChangeState(playerState);
-            }
-            
+            isPlayerInTrigger = true; // 标记玩家在触发区域
         }
     }
 
@@ -90,5 +90,6 @@ public class ObjectForBedroom : MonoBehaviour
             //如果离开时也没有按下k键，则变回原样
             enterObj.SetActive(false);
         }
+        isPlayerInTrigger = false;  
     }
 }

@@ -74,13 +74,14 @@ public class Object : MonoBehaviour
 
     private void Update()
     {
-        if (Player.instance.triggerCalled=true && isInteracted == true)
+        if (Player.instance.triggerCalled && isInteracted == true)
         {
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
             //玩家动画结束
             sprite.sprite = brokenObj;
-            ObjManager.instance.CheckNum((int)addNum);
             Player.instance.triggerCalled = false;
+            ObjManager.instance.brokenNum += (int)addNum;
+            ObjManager.instance.CheckNum();
             //其他动画到不了八
             interactedNum++;
             if (canInteractedMore)
@@ -91,6 +92,11 @@ public class Object : MonoBehaviour
         {
             isInteracted = true;
             Player.instance.stateMachine.ChangeState(playerState);
+        }
+
+        if(!isPlayerInTrigger && !isInteracted)
+        {
+            sprite.sprite = originObj;
         }
     }
 
