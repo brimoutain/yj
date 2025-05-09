@@ -92,6 +92,11 @@ public class Object : MonoBehaviour
             isInteracted = true;
             Player.instance.stateMachine.ChangeState(playerState);
         }
+
+        if (!isPlayerInTrigger && isInteracted == false)
+        {
+            sprite.sprite = originObj;
+        }
     }
 
     protected virtual void OnTriggerStay2D(Collider2D collision)
@@ -114,6 +119,8 @@ public class Object : MonoBehaviour
             sprite.sprite = enterObj;
             isPlayerInTrigger = true; // 标记玩家在触发区域
         }
+
+        
     }
 
     protected virtual void OnTriggerExit2D(Collider2D collision)

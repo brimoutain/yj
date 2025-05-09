@@ -26,7 +26,7 @@ public class PageManager : MonoBehaviour
 
     void Start()
     {
-        gotcollections = CollectionsSave.instance.gotcollections;
+        //gotcollections = CollectionsSave.instance.gotcollections;
         gotcollections = new bool[8];
         if (pageGroup != null) pageGroup.SetActive(false);
         if (dimBackground != null) dimBackground.SetActive(false);
@@ -107,7 +107,7 @@ public class PageManager : MonoBehaviour
         {
             collections[index].SetActive(true);
             gotcollections[index] = true;
-            CollectionsSave.instance.gotcollections[index] = true;
+            //CollectionsSave.instance.gotcollections[index] = true;
         }
     }
 
