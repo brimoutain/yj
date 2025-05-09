@@ -1796,7 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1756122601}
-  fadeDuration: 0.1
+  fadeDuration: 1
 --- !u!1001 &642571701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4183,7 +4183,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.33, y: 9.89, z: 0}
-  m_LocalScale: {x: 1.0320696, y: 1.1017857, z: 1.032326}
+  m_LocalScale: {x: 1.0381588, y: 1.1082863, z: 1.0384167}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6583920128329979039}
