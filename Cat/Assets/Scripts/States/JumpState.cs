@@ -28,7 +28,7 @@ public class JumpState : PlayerState
         }
         else if(rb.velocity.y == 0 && Input.anyKeyDown)
         {
-            stateMachine.ChangeState(player.walkState);
+            stateMachine.ChangeState(player.idleState);
         }
     }
 }
