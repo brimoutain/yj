@@ -5,6 +5,7 @@ using UnityEngine;
 public class Slider : MonoBehaviour
 {
     public RectTransform slider;
+    public RectTransform layer;
 
     private void Start()
     {

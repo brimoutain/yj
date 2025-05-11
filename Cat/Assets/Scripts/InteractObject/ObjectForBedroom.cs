@@ -12,6 +12,7 @@ public class ObjectForBedroom : MonoBehaviour
     protected Collider2D col;
     protected bool isInteracted = false;
 
+    public GameObject originObj;
     public GameObject enterObj;
     public GameObject brokenObj;
     protected PlayerState playerState;
@@ -37,6 +38,7 @@ public class ObjectForBedroom : MonoBehaviour
 
     void Start()
     {
+        originObj.SetActive(true);
         //anim = GetComponentInChildren<Animator>();
         col = GetComponent<Collider2D>();
 
@@ -58,13 +60,14 @@ public class ObjectForBedroom : MonoBehaviour
         if (Player.instance.triggerCalled && isInteracted)
         {
             //玩家动画结束
+            originObj.SetActive(false);
             enterObj.SetActive(false);//关闭白边
             brokenObj.SetActive(true);//打开破坏
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
             ObjManager.instance.brokenNum += (int)addNum;
             ObjManager.instance.CheckNum();
             Player.instance.triggerCalled = false;
-            gameObject.SetActive(false);//
+            
         }
 
         if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.K))
@@ -89,6 +92,13 @@ public class ObjectForBedroom : MonoBehaviour
         {
             //如果离开时也没有按下k键，则变回原样
             enterObj.SetActive(false);
+        }
+        else if (isInteracted)
+        {
+            //玩家动画结束
+            originObj.SetActive(false);
+            enterObj.SetActive(false);//关闭白边
+            brokenObj.SetActive(true);//打开破坏
         }
         isPlayerInTrigger = false;  
     }

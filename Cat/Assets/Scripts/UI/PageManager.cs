@@ -26,6 +26,7 @@ public class PageManager : MonoBehaviour
 
     void Start()
     {
+        gotcollections = new bool[8];
         if (pageGroup != null) pageGroup.SetActive(false);
         if (dimBackground != null) dimBackground.SetActive(false);
 

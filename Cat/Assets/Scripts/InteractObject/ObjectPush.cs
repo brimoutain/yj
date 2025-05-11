@@ -9,10 +9,6 @@ public class ObjectPush : Object
         base.OnTriggerExit2D(collision);
     }
 
-    protected override void OnTriggerStay2D(Collider2D collision)
-    {
-        base.OnTriggerStay2D(collision);
-    }
 
     protected override void Start()
     {

@@ -10,7 +10,7 @@ public class Object : MonoBehaviour
     //protected Animator anim;
     protected Collider2D col;
     protected SpriteRenderer sprite;
-    protected bool isInteracted = false;
+    [SerializeField] private bool isInteracted = false;
 
     public Sprite originObj;
     public Sprite enterObj;
@@ -18,8 +18,9 @@ public class Object : MonoBehaviour
 
     protected PlayerState playerState;
     public bool canInteractedMore = false;
-    public static int interactedNum;
+    private int interactedNum;
 
+    public Sprite currentObj;
 
     // 1. 定义一个枚举类型作为选项
     public enum StateType
@@ -42,7 +43,7 @@ public class Object : MonoBehaviour
     private StateType selectedState;
     [SerializeField]
     private AddNum addNum;
-    private bool isPlayerInTrigger;
+    [SerializeField] private bool isPlayerInTrigger;
 
     protected virtual void Start()
     {
@@ -74,25 +75,28 @@ public class Object : MonoBehaviour
 
     private void Update()
     {
-        if (Player.instance.triggerCalled && isInteracted == true)
-        {
-            Player.instance.stateMachine.ChangeState(Player.instance.idleState);
-            //玩家动画结束
-            sprite.sprite = brokenObj;
-            Player.instance.triggerCalled = false;
-            ObjManager.instance.brokenNum += (int)addNum;
-            ObjManager.instance.CheckNum();
-            //其他动画到不了八
-            interactedNum++;
-            if (canInteractedMore)
-                isInteracted = false;
-        }
-
+        currentObj = sprite.sprite;
         if(isPlayerInTrigger && Input.GetKeyDown(KeyCode.K))
         {
-            isInteracted = true;
+            if (playerState != Player.instance.slideState)
+            {
+                isInteracted = true;
+            }
             Player.instance.stateMachine.ChangeState(playerState);
         }
+
+        if (Player.instance.triggerCalled && (isInteracted || playerState == Player.instance.slideState))
+        {
+            sprite.sprite = brokenObj;
+            Player.instance.stateMachine.ChangeState(Player.instance.idleState);
+            //玩家动画结束
+            ObjManager.instance.brokenNum += (int)addNum;
+            ObjManager.instance.CheckNum(); 
+            //其他动画到不了八
+            interactedNum++;
+            Player.instance.triggerCalled = false;            
+        }
+
 
         if(!isPlayerInTrigger && !isInteracted)
         {
@@ -100,21 +104,8 @@ public class Object : MonoBehaviour
         }
     }
 
-    protected virtual void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        //// 检查进入触发器的物体是否是特定类型
-        //if (collision.CompareTag("Player") && isInteracted == false)
-        //{
-        //    //玩家进入检测范围，且没有被破坏过时变成白边
-        //    sprite.sprite = enterObj;
-        //    if (Input.GetKeyDown(KeyCode.K) )
-        //    {
-        //        isInteracted = true;
-        //        Player.instance.stateMachine.ChangeState(playerState);
-        //    }
-            
-        //}
-
         if (collision.CompareTag("Player") && !isInteracted)
         {
             sprite.sprite = enterObj;
@@ -129,10 +120,15 @@ public class Object : MonoBehaviour
             //如果离开时也没有按下k键，则变回原样
             sprite.sprite = originObj;
         }
-        if(interactedNum == 8)
+        else if (isInteracted)
+        {
+            sprite.sprite = brokenObj;
+            col.enabled = false;
+        }
+        if (interactedNum == 8)
         {
             PageManager.TriggerCollectionEvent(5);
         }
-        isPlayerInTrigger = false;
+        isPlayerInTrigger = false;  
     }
 }

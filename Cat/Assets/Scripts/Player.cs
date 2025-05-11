@@ -106,8 +106,8 @@ public class Player : MonoBehaviour
         FlipController(_xVelociuty);
     }
     #endregion
-    public void AnimationFinished(Player player)
+    public void AnimationFinished()
     {
-        player.triggerCalled = true;
+        Player.instance.triggerCalled = true;
     }
 }

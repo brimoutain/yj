@@ -10,7 +10,9 @@ public class AnimationFinish : MonoBehaviour
 
     public void TriggerCalled()
     {
-        this.animationFinish += Player.instance.AnimationFinished;
-        animationFinish.Invoke(Player.instance);
+        //Debug.Log("TriggerCall");
+        //this.animationFinish += Player.instance.AnimationFinished;
+        //animationFinish.Invoke(Player.instance);
+        Player.instance.AnimationFinished();
     }
 }
