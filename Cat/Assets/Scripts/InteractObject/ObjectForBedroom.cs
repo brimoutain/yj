@@ -24,6 +24,7 @@ public class ObjectForBedroom : MonoBehaviour
     }
     public enum AddNum
     {
+        Zero = 0,
         Three = 3,
         Six = 6,
         Ten = 10,
