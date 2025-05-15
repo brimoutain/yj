@@ -26,7 +26,12 @@ public class PageManager : MonoBehaviour
 
     void Start()
     {
-        gotcollections = new bool[8];
+        InitializeCollections();
+        if(instance != null && instance != this)
+        {
+            Destroy(instance);
+        } 
+        instance = this;
         if (pageGroup != null) pageGroup.SetActive(false);
         if (dimBackground != null) dimBackground.SetActive(false);
 
@@ -43,6 +48,19 @@ public class PageManager : MonoBehaviour
         }
 
         CollectionGetEventHandler += AddCollections;
+    }
+
+    private void InitializeCollections()
+    {
+        gotcollections = new bool[8];
+        gotcollections = CollectionsSave.instance.gotcollections;
+        for (int i = 0;i < 8; i++)
+        {
+            if (gotcollections[i])
+            {
+                collections[i].SetActive(true);
+            }
+        }
     }
 
     public void ShowPage(int index)
@@ -104,17 +122,26 @@ public class PageManager : MonoBehaviour
     {
         if (!gotcollections[index])
         {
+            
             collections[index].SetActive(true);
             gotcollections[index] = true;
+            CollectionsSave.instance.gotcollections[index] = true;
         }
     }
 
     public static void TriggerCollectionEvent(int index)
     {
+        
         CollectionGetEventHandler?.Invoke(index);
     }
 
     public delegate void CollectionGet(int index);
 
     public static event CollectionGet CollectionGetEventHandler;
+
+    void OnDestroy()
+    {
+        CollectionGetEventHandler -= AddCollections;
+    }
+
 }

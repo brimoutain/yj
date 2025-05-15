@@ -27,7 +27,7 @@ public class WalkState : GroundedState
         base.Update();
 
         // ¼ì²âÊÇ·ñ°´×¡×óShift¼ü
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(player.keyCodes[2]))
         {
             speedMultiplier = sprintMultiplier;
         }

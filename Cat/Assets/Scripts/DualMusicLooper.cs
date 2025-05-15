@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class DualMusicLooper : MonoBehaviour
@@ -14,6 +15,8 @@ public class DualMusicLooper : MonoBehaviour
     private AudioClip currentClip;
     private bool isPlayingMusic1 = true;
     private Coroutine loopCoroutine;
+
+    public Slider slider;
 
     void Awake()
     {
@@ -66,5 +69,10 @@ public class DualMusicLooper : MonoBehaviour
         }
 
         audioSource.volume = targetVolume;
+    }
+
+    public void ChangeVolume()
+    {
+        audioSource.volume = slider.value * 0.5f;
     }
 }

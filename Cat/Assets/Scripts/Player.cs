@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public LayerMask whatIsGround;
     public Transform groundCheck;
 
+    public KeyCode[] keyCodes;
+
     #region State
     public PlayerStateMachine stateMachine {  get; private set; }
     public IdleState idleState { get; private set; }
@@ -62,13 +64,18 @@ public class Player : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        keyCodes = new KeyCode[3];
+        for (int i = 0; i <3; i++)
+        {
+            keyCodes[i] = SettingManager.instance.playerKeys[i];
+        }
     }
 
     private void Update()
     {
         stateMachine.currentState.Update();
-        Debug.Log(stateMachine.currentState);
-        Debug.Log(triggerCalled);
+        //Debug.Log(stateMachine.currentState);
+        //Debug.Log(triggerCalled);
         isGroundDetected = Physics2D.Raycast(groundCheck.position, Vector3.down, 1f,whatIsGround);
     }
 

@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjManager : MonoBehaviour
 {
     public static ObjManager instance; // 静态单例
     public int brokenNum = 0;
-    public Slider slider;
+    public AngrySlider slider;
     private void Awake()
     {
         // 防止重复创建单例

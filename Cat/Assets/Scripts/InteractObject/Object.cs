@@ -77,7 +77,7 @@ public class Object : MonoBehaviour
     private void Update()
     {
         currentObj = sprite.sprite;
-        if(isPlayerInTrigger && Input.GetKeyDown(KeyCode.K))
+        if(isPlayerInTrigger && Input.GetKeyDown(Player.instance.keyCodes[1]))
         {
             if (playerState != Player.instance.slideState)
             {
@@ -92,9 +92,9 @@ public class Object : MonoBehaviour
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
             //玩家动画结束
             ObjManager.instance.brokenNum += (int)addNum;
-            ObjManager.instance.CheckNum(); 
-            //其他动画到不了八
-            interactedNum++;
+            ObjManager.instance.CheckNum();
+            if(playerState == Player.instance.slideState)
+                interactedNum++;
             Player.instance.triggerCalled = false;            
         }
 
@@ -126,7 +126,7 @@ public class Object : MonoBehaviour
             sprite.sprite = brokenObj;
             col.enabled = false;
         }
-        if (interactedNum == 8)
+        if(interactedNum == 8)
         {
             PageManager.TriggerCollectionEvent(5);
         }

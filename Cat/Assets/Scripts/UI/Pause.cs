@@ -59,6 +59,8 @@ public class Pause : MonoBehaviour
             // 若笔记本正在打开，则不允许暂停
             if (PageManager.instance != null && PageManager.instance.pageGroup.activeSelf)
                 return;
+            if (SettingManager.instance != null && SettingManager.instance.settingPanel.activeSelf)
+                return;
 
             PauseGame();
         }

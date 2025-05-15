@@ -71,7 +71,7 @@ public class ObjectForBedroom : MonoBehaviour
             
         }
 
-        if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.K))
+        if (isPlayerInTrigger && Input.GetKeyDown(Player.instance.keyCodes[1]))
         {
             isInteracted = true;
             Player.instance.stateMachine.ChangeState(playerState);
