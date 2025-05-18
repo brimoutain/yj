@@ -3387,7 +3387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e83287b7cbf3e646a23f8794c7552a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: BathroomEND
+  sceneToLoad: BedroomEND
 --- !u!1001 &550968879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11122,7 +11122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677ffaa02b8ccbe4bb7198e938bdddf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: BedroomEND
+  sceneToLoad: LivingroomEND
 --- !u!1 &1655386249
 GameObject:
   m_ObjectHideFlags: 0

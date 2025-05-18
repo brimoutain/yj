@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BedroomEND.unity
     guid: f1bcf44c5ad0dcb43a78efc468caabfc
+  - enabled: 1
+    path: Assets/Scenes/LivingroomEND.unity
+    guid: 500d4c59a6c94e543a4a3e36a8c547a0
   m_configObjects: {}
