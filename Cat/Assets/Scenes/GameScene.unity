@@ -4164,8 +4164,8 @@ GameObject:
   - component: {fileID: 598680911}
   - component: {fileID: 598680915}
   - component: {fileID: 598680914}
-  - component: {fileID: 598680916}
   - component: {fileID: 598680917}
+  - component: {fileID: 598680918}
   m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
@@ -4323,20 +4323,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 230, y: 1}
   m_EdgeRadius: 0
---- !u!114 &598680916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598680910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7486475cad7f7ea4bb154a438ab2a92e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brokenNum: 0
-  slider: {fileID: 343264778}
 --- !u!61 &598680917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4382,6 +4368,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.04, y: 33.1}
   m_EdgeRadius: 0
+--- !u!114 &598680918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598680910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7486475cad7f7ea4bb154a438ab2a92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenNum: 0
+  slider: {fileID: 343264778}
 --- !u!1 &650074894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8872,7 +8872,7 @@ MonoBehaviour:
   FirstroomBarrier: {fileID: 1518545382}
   SecondroomBarrier: {fileID: 1633791341}
   ThirdroomBarrier: {fileID: 837427217}
-  countdownTime: 60
+  countdownTime: 10
   currentRoom: 1
   loadScene: 
 --- !u!4 &1318269242

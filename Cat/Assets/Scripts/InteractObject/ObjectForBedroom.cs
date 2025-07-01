@@ -65,8 +65,8 @@ public class ObjectForBedroom : MonoBehaviour
             enterObj.SetActive(false);//¹Ø±Õ°×±ß
             brokenObj.SetActive(true);//´ò¿ªÆÆ»µ
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
-            ObjManager.instance.brokenNum += (int)addNum;
-            ObjManager.instance.CheckNum();
+            CollectionManager.instance.brokenNum += (int)addNum;
+            CollectionManager.instance.CheckNum();
             Player.instance.triggerCalled = false;
             
         }

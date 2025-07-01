@@ -106,13 +106,13 @@ public class PageManager : MonoBehaviour
 
     public void GetCollections()
     {
-        if (ObjManager.instance.brokenNum >= 30 )
+        if (CollectionManager.instance.brokenNum >= 30 )
         {
             if (!gotcollections[6])
                 CollectionGetEventHandler.Invoke(6);
-            if (ObjManager.instance.brokenNum >= 60 && !gotcollections[7])
+            if (CollectionManager.instance.brokenNum >= 60 && !gotcollections[7])
                 CollectionGetEventHandler.Invoke(7);
-            if (ObjManager.instance.brokenNum == 100 && !gotcollections[0])
+            if (CollectionManager.instance.brokenNum == 100 && !gotcollections[0])
                 CollectionGetEventHandler.Invoke(0);          
         }
         

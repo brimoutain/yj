@@ -95,7 +95,7 @@ public class RoomTimerManager : MonoBehaviour
         ThirdroomBarrier.SetActive(false);
         DialogManager.instance.ShowDialog1();
         //进入阳台时若没破坏任何东西
-        if (ObjManager.instance.brokenNum == 0)
+        if (CollectionManager.instance.brokenNum == 0)
         {
             PageManager.TriggerCollectionEvent(1);
         }

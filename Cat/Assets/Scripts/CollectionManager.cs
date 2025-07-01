@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ObjManager : MonoBehaviour
+public class CollectionManager : MonoBehaviour
 {
-    public static ObjManager instance; // ¾²Ì¬µ¥Àý
+    public static CollectionManager instance; // ¾²Ì¬µ¥Àý
     public int brokenNum = 0;
     public AngrySlider slider;
     private void Awake()

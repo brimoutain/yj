@@ -14,7 +14,7 @@ public class AngrySlider : MonoBehaviour
 
     public void AddNum()
     {
-        float newWidth = 128.7f * ObjManager.instance.brokenNum * 0.01f;
+        float newWidth = 128.7f * CollectionManager.instance.brokenNum * 0.01f;
         slider.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
     }
 }

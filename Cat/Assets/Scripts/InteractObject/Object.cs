@@ -18,7 +18,7 @@ public class Object : MonoBehaviour
 
     protected PlayerState playerState;
     public bool canInteractedMore = false;
-    private int interactedNum;
+    public int interactedNum;
 
     public Sprite currentObj;
 
@@ -79,7 +79,7 @@ public class Object : MonoBehaviour
         currentObj = sprite.sprite;
         if(isPlayerInTrigger && Input.GetKeyDown(Player.instance.keyCodes[1]))
         {
-            if (playerState != Player.instance.slideState)
+            if (!canInteractedMore)
             {
                 isInteracted = true;
             }
@@ -91,9 +91,12 @@ public class Object : MonoBehaviour
             sprite.sprite = brokenObj;
             Player.instance.stateMachine.ChangeState(Player.instance.idleState);
             //Íæ¼Ò¶¯»­½áÊø
-            ObjManager.instance.brokenNum += (int)addNum;
-            ObjManager.instance.CheckNum();
-            if(playerState == Player.instance.slideState)
+            if (interactedNum < 1)
+            {
+                CollectionManager.instance.brokenNum += (int)addNum;
+                CollectionManager.instance.CheckNum();
+            }
+            if(canInteractedMore)
                 interactedNum++;
             Player.instance.triggerCalled = false;            
         }
