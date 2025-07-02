@@ -20,6 +20,9 @@ public class PageManager : MonoBehaviour
 
     public GameObject[] collections;
     public bool[] gotcollections;
+    public CollectionGetting colGet;
+    [SerializeField] private List<Sprite> colImage;
+    private Dictionary<int, Sprite> spriteDict;
 
     private int currentPageIndex = 0;
     private bool wasTimePaused = false;
@@ -47,7 +50,27 @@ public class PageManager : MonoBehaviour
             tabButtons[i].onClick.AddListener(() => ShowPage(index));
         }
 
-        CollectionGetEventHandler += AddCollections;
+        InitDictionary();
+        CollectionGetEventHandler += AddCollections;//Ìí¼ÓÊÂ¼þ
+    }
+
+    void InitDictionary()
+    {
+        spriteDict = new Dictionary<int, Sprite>();
+
+        for (int i = 0; i < colImage.Count; i++)
+        {
+            spriteDict.Add(i, colImage[i]);
+        }
+    }
+
+    void ShowPopup(int colNum)
+    {
+        if (spriteDict.ContainsKey(colNum))
+        {
+            colGet.collection.sprite = spriteDict[colNum];
+            colGet.ShowCollection(colNum);
+        }
     }
 
     private void InitializeCollections()
@@ -104,20 +127,6 @@ public class PageManager : MonoBehaviour
         }
     }
 
-    public void GetCollections()
-    {
-        if (CollectionManager.instance.brokenNum >= 30 )
-        {
-            if (!gotcollections[6])
-                CollectionGetEventHandler.Invoke(6);
-            if (CollectionManager.instance.brokenNum >= 60 && !gotcollections[7])
-                CollectionGetEventHandler.Invoke(7);
-            if (CollectionManager.instance.brokenNum == 100 && !gotcollections[0])
-                CollectionGetEventHandler.Invoke(0);          
-        }
-        
-    }
-
     public void AddCollections(int index)
     {
         if (!gotcollections[index])
@@ -126,12 +135,12 @@ public class PageManager : MonoBehaviour
             collections[index].SetActive(true);
             gotcollections[index] = true;
             CollectionsSave.instance.gotcollections[index] = true;
+            ShowPopup(index);
         }
     }
 
     public static void TriggerCollectionEvent(int index)
     {
-        
         CollectionGetEventHandler?.Invoke(index);
     }
 
