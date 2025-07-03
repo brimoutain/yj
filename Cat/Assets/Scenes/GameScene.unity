@@ -13852,14 +13852,14 @@ MonoBehaviour:
   - {x: 536, y: -226}
   - {x: 336, y: -226}
   desText:
-  - 0
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
-  - 7
+  - "\u8FBE\u6210\u5EA6112%"
+  - "\u722A\u4E0B\u7559\u60C5\uFF1F\u4E0D\uFF0C\u662F\u722A\u4E0B\u65E0\u75D5\uFF01"
+  - "\u50CF\u5C71\u59C6\u4E00\u6837\u53EF\u9760\u2014\u2014\u60A8\u7684\u72FC\u85C9\u5DF2\u7ECF\u9001\u8FBE"
+  - You Died...
+  - "\u4E07\u7269\u7686\u865A\uFF0C\u4E07\u7269\u7686\u5141...\u9664\u4E86\u5730\u5FC3\u5F15\u529B\uFF1F"
+  - "\u6781\u81F4\u65E0\u804A\u7684\u4E50\u8DA3"
+  - "\u529F\u5FB7+1+1+1"
+  - "\u786C\u4EF6\u6740\u624B\uFF08\u7269\u7406\uFF09"
 --- !u!114 &22886821076001052
 MonoBehaviour:
   m_ObjectHideFlags: 0
